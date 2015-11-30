@@ -20,7 +20,7 @@ A custom animated circle percent view
 ## Screenshot
 ### iPhone
 
-![](screenshot.png) 
+![](/KNCirclePercentView/screenshot.png) 
 ##License
 The MIT License (MIT)
 
