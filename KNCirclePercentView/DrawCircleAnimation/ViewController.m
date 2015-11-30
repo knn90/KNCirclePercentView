@@ -50,7 +50,7 @@
                               fillColor:[UIColor clearColor]
                             strokeColor:[UIColor orangeColor]
                          animatedColors:nil];
-    self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
+    self.circle4.percentLabel.font = [UIFont systemFontOfSize:35];
 
     [self.circleView startAnimation];
     [self.circle4 startAnimation];
