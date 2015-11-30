@@ -105,7 +105,7 @@
     self.backgroundLayer.fillColor = fillColor.CGColor;
     self.backgroundLayer.strokeColor = [UIColor lightGrayColor].CGColor;
     self.backgroundLayer.lineWidth = self.lineWidth;
-    self.backgroundLayer.lineCap = kCALineCapButt;
+    self.backgroundLayer.lineCap = kCALineCapRound;
     self.backgroundLayer.shouldRasterize = YES;
     
     // Add to parent layer
@@ -128,7 +128,7 @@
     self.circle.fillColor = [UIColor clearColor].CGColor;
     self.circle.strokeColor = strokeColor.CGColor;
     self.circle.lineWidth = self.lineWidth;
-    self.circle.lineCap = kCALineCapButt;
+    self.circle.lineCap = kCALineCapRound;
     self.circle.shouldRasterize = YES;
     [self.layer addSublayer:self.circle];
 }

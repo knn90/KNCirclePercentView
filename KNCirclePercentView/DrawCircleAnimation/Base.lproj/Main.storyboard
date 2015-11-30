@@ -26,7 +26,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxd-B2-Mry" customClass="KNCirclePercentView">
                                 <rect key="frame" x="87" y="138" width="200" height="200"/>
-                                <color key="backgroundColor" red="0.4823529412" green="0.85882352939999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="1fJ-yr-ZUz"/>
                                     <constraint firstAttribute="width" constant="200" id="vq2-1p-Ubk"/>
@@ -46,7 +46,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ad-eQ-DmF" customClass="KNCirclePercentView">
                                 <rect key="frame" x="87" y="399" width="200" height="200"/>
-                                <color key="backgroundColor" red="0.4823529412" green="0.85882352939999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Xds-sC-EdG"/>
                                     <constraint firstAttribute="width" constant="200" id="jBV-LG-3Nl"/>
