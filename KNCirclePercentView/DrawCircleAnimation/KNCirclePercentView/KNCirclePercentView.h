@@ -24,14 +24,6 @@
                  strokeColor:(UIColor *)strokeColor
               animatedColors:(NSArray *)colors;
 
-- (void)drawCircleWithRadius:(CGFloat)radius
-                     percent:(CGFloat)percent
-                    duration:(CGFloat)duration
-                   lineWidth:(CGFloat)lineWidth
-                   clockwise:(BOOL)clockwise
-                   fillColor:(UIColor *)fillColor
-                      colors:(NSArray *)colors;
-
 /*
  * Auto calculate radius
  */
@@ -43,13 +35,6 @@
                    fillColor:(UIColor *)fillColor
                  strokeColor:(UIColor *)strokeColor
               animatedColors:(NSArray *)colors;
-
-- (void)drawCircleWithPercent:(CGFloat)percent
-                     duration:(CGFloat)duration
-                    lineWidth:(CGFloat)lineWidth
-                    clockwise:(BOOL)clockwise
-                    fillColor:(UIColor *)fillColor
-                       colors:(NSArray *)colors;
 
 - (void)startAnimation;
 

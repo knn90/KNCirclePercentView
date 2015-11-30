@@ -17,30 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBK-1k-NKu" customClass="KNCirclePercentView">
-                                <rect key="frame" x="210" y="422" width="150" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Yp6-DV-YgN"/>
-                                    <constraint firstAttribute="height" constant="150" id="mhU-PK-aIt"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ad-eQ-DmF" customClass="KNCirclePercentView">
-                                <rect key="frame" x="20" y="440" width="150" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="Xds-sC-EdG"/>
-                                    <constraint firstAttribute="width" constant="150" id="jBV-LG-3Nl"/>
-                                </constraints>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FB8-H2-7hR" customClass="KNCirclePercentView">
-                                <rect key="frame" x="255" y="100" width="100" height="150"/>
-                                <color key="backgroundColor" red="0.4823529412" green="0.85882352939999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="W9M-M7-dDg"/>
-                                    <constraint firstAttribute="width" constant="100" id="cFw-E8-6Ci"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3b-7P-mQf">
                                 <rect key="frame" x="131" y="47" width="112" height="30"/>
                                 <state key="normal" title="Reset Animation"/>
@@ -48,57 +24,74 @@
                                     <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCY-aL-Od9"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOP-lA-60V" customClass="KNCirclePercentView">
-                                <rect key="frame" x="20" y="95" width="150" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxd-B2-Mry" customClass="KNCirclePercentView">
+                                <rect key="frame" x="87" y="138" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.85882352939999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="1Ki-ZI-NOx"/>
-                                    <constraint firstAttribute="height" constant="100" id="5WO-Hu-Us0"/>
+                                    <constraint firstAttribute="height" constant="200" id="1fJ-yr-ZUz"/>
+                                    <constraint firstAttribute="width" constant="200" id="vq2-1p-Ubk"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxd-B2-Mry" customClass="KNCirclePercentView">
-                                <rect key="frame" x="112" y="259" width="150" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKh-Oc-nfW">
+                                <rect key="frame" x="161" y="97" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Calculate Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-7D-VHe">
+                                <rect key="frame" x="103" y="358" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ad-eQ-DmF" customClass="KNCirclePercentView">
+                                <rect key="frame" x="87" y="399" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.85882352939999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="1fJ-yr-ZUz"/>
-                                    <constraint firstAttribute="width" constant="150" id="vq2-1p-Ubk"/>
+                                    <constraint firstAttribute="height" constant="200" id="Xds-sC-EdG"/>
+                                    <constraint firstAttribute="width" constant="200" id="jBV-LG-3Nl"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3SV-qf-YsD"/>
-                            <constraint firstAttribute="trailing" secondItem="FB8-H2-7hR" secondAttribute="trailing" constant="20" id="5Jh-Jh-fcI"/>
                             <constraint firstItem="l3b-7P-mQf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="7rA-Z0-9zA"/>
-                            <constraint firstItem="FB8-H2-7hR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="DhJ-8Z-T8z"/>
-                            <constraint firstItem="ZOP-lA-60V" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="Euz-Qs-zvb"/>
+                            <constraint firstItem="4ad-eQ-DmF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CRQ-1B-zxP"/>
+                            <constraint firstItem="UXH-7D-VHe" firstAttribute="top" secondItem="lxd-B2-Mry" secondAttribute="bottom" constant="20" id="Fam-uI-wt7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4ad-eQ-DmF" secondAttribute="bottom" constant="77" id="I5z-pz-Prk"/>
                             <constraint firstItem="4ad-eQ-DmF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="OWH-1M-9Gu"/>
+                            <constraint firstItem="4ad-eQ-DmF" firstAttribute="top" secondItem="lxd-B2-Mry" secondAttribute="bottom" constant="20" id="P1a-8z-35d"/>
                             <constraint firstItem="l3b-7P-mQf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QTX-Xd-1zu"/>
+                            <constraint firstItem="4ad-eQ-DmF" firstAttribute="top" secondItem="UXH-7D-VHe" secondAttribute="bottom" constant="20" id="SVO-7c-Rhz"/>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VZB-qc-IgZ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hBK-1k-NKu" secondAttribute="bottom" constant="95" id="iAx-D0-Qw8"/>
-                            <constraint firstItem="ZOP-lA-60V" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="8" id="iWr-oX-M89"/>
-                            <constraint firstAttribute="trailing" secondItem="hBK-1k-NKu" secondAttribute="trailing" constant="15" id="pvS-eC-Cy1"/>
-                            <constraint firstItem="ZOP-lA-60V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="zhl-Nx-acb"/>
+                            <constraint firstItem="lxd-B2-Mry" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="20" id="YjG-Ll-WSg"/>
+                            <constraint firstItem="lxd-B2-Mry" firstAttribute="top" secondItem="vKh-Oc-nfW" secondAttribute="bottom" constant="20" id="kSa-7Y-X3Y"/>
+                            <constraint firstItem="vKh-Oc-nfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kb5-Sc-k9x"/>
+                            <constraint firstItem="vKh-Oc-nfW" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="20" id="s9D-Pm-zUm"/>
+                            <constraint firstItem="UXH-7D-VHe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uhf-fU-CHS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="iWr-oX-M89"/>
+                                <exclude reference="3SV-qf-YsD"/>
+                                <exclude reference="YjG-Ll-WSg"/>
+                                <exclude reference="OWH-1M-9Gu"/>
+                                <exclude reference="P1a-8z-35d"/>
+                                <exclude reference="I5z-pz-Prk"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="circle1" destination="ZOP-lA-60V" id="V0h-vE-E5p"/>
-                        <outlet property="circle2" destination="FB8-H2-7hR" id="kVG-0y-u6T"/>
-                        <outlet property="circle3" destination="hBK-1k-NKu" id="hm9-iI-HH6"/>
                         <outlet property="circle4" destination="4ad-eQ-DmF" id="sfW-hG-jvf"/>
                         <outlet property="circleView" destination="lxd-B2-Mry" id="P0c-iw-7em"/>
+                        <outlet property="radiusLabel" destination="vKh-Oc-nfW" id="iBy-sH-glo"/>
                         <outlet property="reset" destination="l3b-7P-mQf" id="JNY-BB-Xdn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="451.5" y="403.5"/>
         </scene>
     </scenes>
 </document>

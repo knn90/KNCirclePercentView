@@ -10,13 +10,11 @@
 #import "KNCirclePercentView.h"
 
 @interface ViewController() <UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet KNCirclePercentView *circleView;
-@property (weak, nonatomic) IBOutlet UIButton *reset;
-@property (weak, nonatomic) IBOutlet KNCirclePercentView *circle1;
-@property (weak, nonatomic) IBOutlet KNCirclePercentView *circle2;
-@property (weak, nonatomic) IBOutlet KNCirclePercentView *circle3;
 @property (weak, nonatomic) IBOutlet KNCirclePercentView *circle4;
+@property (weak, nonatomic) IBOutlet UIButton *reset;
+@property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+
 
 
 @end
@@ -30,49 +28,31 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.radiusLabel.text = @"Radius = 75";
     [self.circleView drawCircleWithRadius:75
                                   percent:60
                                  duration:2
                                 lineWidth:15
                                 clockwise:YES
                                 fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor] animatedColors:@[[UIColor greenColor], [UIColor yellowColor], [UIColor orangeColor], [UIColor redColor]]];
+                              strokeColor:[UIColor orangeColor]
+                           animatedColors:@[[UIColor greenColor],
+                                            [UIColor yellowColor],
+                                            [UIColor orangeColor],
+                                            [UIColor redColor]]];
     self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
     
-    [self.circle1 drawCircleWithPercent:20
-                                 duration:2
-                                lineWidth:10
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor] animatedColors:nil];
-    
-    [self.circle2 drawCircleWithPercent:40
-                                 duration:2
-                                lineWidth:15
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                                colors:@[[UIColor greenColor], [UIColor yellowColor], [UIColor orangeColor], [UIColor redColor]]];
-    
-    [self.circle3 drawCircleWithRadius:75
-                                  percent:80
-                                 duration:2
-                                lineWidth:15
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor] animatedColors:nil];
-    
-    [self.circle4 drawCircleWithRadius:75
-                                  percent:100
-                                 duration:2
-                                lineWidth:15
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor] animatedColors:nil];
-    
+    // Auto calculate radius
+    [self.circle4 drawCircleWithPercent:100
+                               duration:2
+                              lineWidth:15
+                              clockwise:YES
+                              fillColor:[UIColor clearColor]
+                            strokeColor:[UIColor orangeColor]
+                         animatedColors:nil];
+    self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
+
     [self.circleView startAnimation];
-    [self.circle1 startAnimation];
-    [self.circle2 startAnimation];
-    [self.circle3 startAnimation];
     [self.circle4 startAnimation];
     
 }
@@ -83,9 +63,6 @@
 }
 - (IBAction)resetAction:(id)sender {
     [self.circleView startAnimation];
-    [self.circle1 startAnimation];
-    [self.circle2 startAnimation];
-    [self.circle3 startAnimation];
     [self.circle4 startAnimation];
 }
 
