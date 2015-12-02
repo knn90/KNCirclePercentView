@@ -32,7 +32,7 @@ A custom animated circle percent view
 ## Screenshot
 ### iPhone
 
-![](/CirclePercent.gif) 
+![](CirclePercent.gif) 
 ##License
 The MIT License (MIT)
 
