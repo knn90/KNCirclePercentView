@@ -106,6 +106,7 @@
     self.backgroundLayer.strokeColor = [UIColor lightGrayColor].CGColor;
     self.backgroundLayer.lineWidth = self.lineWidth;
     self.backgroundLayer.lineCap = kCALineCapRound;
+    self.backgroundLayer.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     self.backgroundLayer.shouldRasterize = YES;
     
     // Add to parent layer
@@ -130,6 +131,7 @@
     self.circle.lineWidth = self.lineWidth;
     self.circle.lineCap = kCALineCapRound;
     self.circle.shouldRasterize = YES;
+    self.circle.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     [self.layer addSublayer:self.circle];
 }
 
