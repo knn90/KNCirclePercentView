@@ -29,14 +29,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.radiusLabel.text = @"Radius = 75";
-    [self.circleView drawCircleWithRadius:75
-                                  percent:60
-                                 duration:2
-                                lineWidth:15
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor]
-                           animatedColors:@[[UIColor greenColor],
+    [self.circleView drawPieChartWithPercent:75
+                                   duration:2
+                                  clockwise:YES
+                                  fillColor:[UIColor clearColor]
+                                strokeColor:[UIColor orangeColor]
+                             animatedColors:@[[UIColor greenColor],
                                             [UIColor yellowColor],
                                             [UIColor orangeColor],
                                             [UIColor redColor]]];
@@ -45,7 +43,7 @@
     // Auto calculate radius
     [self.autoCalculateCircleView drawCircleWithPercent:60
                                duration:2
-                              lineWidth:100
+                              lineWidth:15
                               clockwise:YES
                               fillColor:[UIColor clearColor]
                             strokeColor:[UIColor orangeColor]

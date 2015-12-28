@@ -19,6 +19,7 @@
 @property (nonatomic) CGFloat percent;
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) NSString *lineCap; // kCALineCapButt, kCALineCapRound, kCALineCapSquare
 @property (nonatomic) BOOL clockwise;
 @property (nonatomic, strong) NSMutableArray *colors;
 @end
@@ -34,40 +35,11 @@
     return self;
 }
 
-- (void)drawCircleWithRadius:(CGFloat)radius
-                     percent:(CGFloat)percent
-                    duration:(CGFloat)duration
-                   lineWidth:(CGFloat)lineWidth
-                   clockwise:(BOOL)clockwise
-                   fillColor:(UIColor *)fillColor
-                 strokeColor:(UIColor *)strokeColor
-              animatedColors:(NSArray *)colors {
-    
-    self.duration = duration;
-    self.percent = percent;
-    self.radius = radius;
-    self.lineWidth = lineWidth;
-    self.clockwise = clockwise;
-    self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
-    self.colors = [NSMutableArray new];
-    if (colors != nil) {
-        for (UIColor *color in colors) {
-            [self.colors addObject:(id)color.CGColor];
-        }
-    } else {
-        [self.colors addObject:(id)strokeColor.CGColor];
-    }
-
-    [self setupBackgroundLayerWithFillColor:fillColor];
-    [self setupCircleLayerWithStrokeColor:strokeColor];
-    [self setupPercentLabel];
-}
-
-
 - (void)drawCircleWithPercent:(CGFloat)percent
                      duration:(CGFloat)duration
                     lineWidth:(CGFloat)lineWidth
                     clockwise:(BOOL)clockwise
+                      lineCap:(NSString *)lineCap
                     fillColor:(UIColor *)fillColor
                   strokeColor:(UIColor *)strokeColor
                animatedColors:(NSArray *)colors {
@@ -87,6 +59,37 @@
     
     CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
     self.radius = (min - lineWidth)  / 2;
+    self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
+    
+    [self setupBackgroundLayerWithFillColor:fillColor];
+    [self setupCircleLayerWithStrokeColor:strokeColor];
+    [self setupPercentLabel];
+}
+
+- (void)drawPieChartWithPercent:(CGFloat)percent
+                       duration:(CGFloat)duration
+                      clockwise:(BOOL)clockwise
+                        lineCap:(NSString *)lineCap
+                      fillColor:(UIColor *)fillColor
+                    strokeColor:(UIColor *)strokeColor
+                 animatedColors:(NSArray *)colors {
+    
+    self.duration = duration;
+    self.percent = percent;
+    self.clockwise = clockwise;
+    self.colors = [NSMutableArray new];
+    if (colors != nil) {
+        for (UIColor *color in colors) {
+            [self.colors addObject:(id)color.CGColor];
+        }
+    } else {
+        [self.colors addObject:(id)strokeColor.CGColor];
+    }
+    
+    CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
+    self.lineWidth = min  / 2;
+
+    self.radius = (min - self.lineWidth) / 2;
     self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
     
     [self setupBackgroundLayerWithFillColor:fillColor];
