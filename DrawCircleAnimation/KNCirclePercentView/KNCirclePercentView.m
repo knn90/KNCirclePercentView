@@ -105,7 +105,7 @@
     self.backgroundLayer.fillColor = fillColor.CGColor;
     self.backgroundLayer.strokeColor = [UIColor lightGrayColor].CGColor;
     self.backgroundLayer.lineWidth = self.lineWidth;
-    self.backgroundLayer.lineCap = kCALineCapRound;
+    self.backgroundLayer.lineCap = kCALineCapButt;
     self.backgroundLayer.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     self.backgroundLayer.shouldRasterize = YES;
     
@@ -129,7 +129,7 @@
     self.circle.fillColor = [UIColor clearColor].CGColor;
     self.circle.strokeColor = strokeColor.CGColor;
     self.circle.lineWidth = self.lineWidth;
-    self.circle.lineCap = kCALineCapRound;
+    self.circle.lineCap = kCALineCapButt;
     self.circle.shouldRasterize = YES;
     self.circle.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     [self.layer addSublayer:self.circle];

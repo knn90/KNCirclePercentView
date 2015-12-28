@@ -11,7 +11,7 @@
 
 @interface ViewController() <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet KNCirclePercentView *circleView;
-@property (weak, nonatomic) IBOutlet KNCirclePercentView *circle4;
+@property (weak, nonatomic) IBOutlet KNCirclePercentView *autoCalculateCircleView;
 @property (weak, nonatomic) IBOutlet UIButton *reset;
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
 
@@ -43,17 +43,17 @@
     self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
     
     // Auto calculate radius
-    [self.circle4 drawCircleWithPercent:100
+    [self.autoCalculateCircleView drawCircleWithPercent:60
                                duration:2
-                              lineWidth:15
+                              lineWidth:100
                               clockwise:YES
                               fillColor:[UIColor clearColor]
                             strokeColor:[UIColor orangeColor]
                          animatedColors:nil];
-    self.circle4.percentLabel.font = [UIFont systemFontOfSize:35];
+    self.autoCalculateCircleView.percentLabel.font = [UIFont systemFontOfSize:35];
 
     [self.circleView startAnimation];
-    [self.circle4 startAnimation];
+    [self.autoCalculateCircleView startAnimation];
     
 }
 
@@ -63,7 +63,7 @@
 }
 - (IBAction)resetAction:(id)sender {
     [self.circleView startAnimation];
-    [self.circle4 startAnimation];
+    [self.autoCalculateCircleView startAnimation];
 }
 
 
