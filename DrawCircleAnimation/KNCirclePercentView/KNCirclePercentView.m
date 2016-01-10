@@ -16,7 +16,7 @@
 @property (nonatomic, strong) CAShapeLayer *circle;
 @property (nonatomic) CGPoint centerPoint;
 @property (nonatomic) CGFloat duration;
-@property (nonatomic) CGFloat percent;
+
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) NSString *lineCap; // kCALineCapButt, kCALineCapRound, kCALineCapSquare
@@ -31,8 +31,26 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self commonInit];
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [self commonInit];
+}
+
+- (void)commonInit {
+    self.backgroundLayer = [CAShapeLayer layer];
+    [self.layer addSublayer:self.backgroundLayer];
+    
+    self.circle = [CAShapeLayer layer];
+    [self.layer addSublayer:self.circle];
+    
+    self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.height / 2)];
+    [self addSubview:self.percentLabel];
+    
+    self.colors = [NSMutableArray new];
 }
 
 - (void)drawCircleWithPercent:(CGFloat)percent
@@ -48,7 +66,7 @@
     self.percent = percent;
     self.lineWidth = lineWidth;
     self.clockwise = clockwise;
-    self.colors = [NSMutableArray new];
+
     if (colors != nil) {
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
@@ -77,7 +95,7 @@
     self.duration = duration;
     self.percent = percent;
     self.clockwise = clockwise;
-    self.colors = [NSMutableArray new];
+
     if (colors != nil) {
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
@@ -98,7 +116,7 @@
 }
 
 - (void)setupBackgroundLayerWithFillColor:(UIColor *)fillColor {
-    self.backgroundLayer = [CAShapeLayer layer];
+
     self.backgroundLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.radius, self.radius) radius:self.radius startAngle:kStartAngle endAngle:2*M_PI clockwise:self.clockwise].CGPath;
     
     // Center the shape in self.view
@@ -111,14 +129,12 @@
     self.backgroundLayer.lineCap = kCALineCapButt;
     self.backgroundLayer.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     self.backgroundLayer.shouldRasterize = YES;
-    
-    // Add to parent layer
-    [self.layer addSublayer:self.backgroundLayer];
+
 }
 
 - (void)setupCircleLayerWithStrokeColor:(UIColor *)strokeColor {
     // Set up the shape of the circle
-    self.circle = [CAShapeLayer layer];
+
     CGFloat endAngle = [self calculateToValueWithPercent:self.percent];
     
     // Make a circular shape
@@ -135,15 +151,14 @@
     self.circle.lineCap = kCALineCapButt;
     self.circle.shouldRasterize = YES;
     self.circle.rasterizationScale = 2 * [UIScreen mainScreen].scale;
-    [self.layer addSublayer:self.circle];
+
 }
 
 - (void)setupPercentLabel {
-    self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.height / 2)];
+
     NSLayoutConstraint *centerHor = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.percentLabel attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
     NSLayoutConstraint *centerVer = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.percentLabel attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
-    
-    [self addSubview:self.percentLabel];
+
     self.percentLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addConstraints:@[centerHor, centerVer]];
     [self layoutIfNeeded];

@@ -32,6 +32,7 @@
     [self.circleView drawPieChartWithPercent:75
                                    duration:2
                                   clockwise:YES
+                             lineCap:kCALineCapButt
                                   fillColor:[UIColor clearColor]
                                 strokeColor:[UIColor orangeColor]
                              animatedColors:@[[UIColor greenColor],
@@ -45,6 +46,7 @@
                                duration:2
                               lineWidth:15
                               clockwise:YES
+                         lineCap:kCALineCapButt
                               fillColor:[UIColor clearColor]
                             strokeColor:[UIColor orangeColor]
                          animatedColors:nil];
@@ -60,8 +62,18 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)resetAction:(id)sender {
+    [self.circleView drawPieChartWithPercent:50
+                                    duration:2
+                                   clockwise:YES
+                                     lineCap:kCALineCapButt
+                                   fillColor:[UIColor clearColor]
+                                 strokeColor:[UIColor orangeColor]
+                              animatedColors:@[[UIColor greenColor],
+                                               [UIColor yellowColor],
+                                               [UIColor orangeColor],
+                                               [UIColor redColor]]];
     [self.circleView startAnimation];
-    [self.autoCalculateCircleView startAnimation];
+//    [self.autoCalculateCircleView startAnimation];
 }
 
 
