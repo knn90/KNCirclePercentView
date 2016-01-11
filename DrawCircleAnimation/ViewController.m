@@ -9,11 +9,12 @@
 #import "ViewController.h"
 #import "KNCirclePercentView.h"
 
-@interface ViewController() <UITableViewDelegate>
+@interface ViewController() <UITableViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet KNCirclePercentView *circleView;
-@property (weak, nonatomic) IBOutlet KNCirclePercentView *circle4;
+@property (weak, nonatomic) IBOutlet KNCirclePercentView *autoCalculateCircleView;
 @property (weak, nonatomic) IBOutlet UIButton *reset;
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 
 
@@ -28,32 +29,33 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.radiusLabel.text = @"Radius = 75";
-    [self.circleView drawCircleWithRadius:75
-                                  percent:60
-                                 duration:2
-                                lineWidth:15
-                                clockwise:YES
-                                fillColor:[UIColor clearColor]
-                              strokeColor:[UIColor orangeColor]
-                           animatedColors:@[[UIColor greenColor],
+    self.radiusLabel.text = @"Pie Chart";
+    [self.circleView drawPieChartWithPercent:75
+                                   duration:2
+                                  clockwise:YES
+                                  fillColor:[UIColor clearColor]
+                                strokeColor:[UIColor orangeColor]
+                             animatedColors:@[[UIColor greenColor],
                                             [UIColor yellowColor],
                                             [UIColor orangeColor],
                                             [UIColor redColor]]];
     self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
     
     // Auto calculate radius
-    [self.circle4 drawCircleWithPercent:100
+    [self.autoCalculateCircleView drawCircleWithPercent:60
                                duration:2
                               lineWidth:15
                               clockwise:YES
+                                lineCap:kCALineCapRound
                               fillColor:[UIColor clearColor]
                             strokeColor:[UIColor orangeColor]
                          animatedColors:nil];
-    self.circle4.percentLabel.font = [UIFont systemFontOfSize:35];
+    self.autoCalculateCircleView.percentLabel.font = [UIFont systemFontOfSize:35];
 
     [self.circleView startAnimation];
-    [self.circle4 startAnimation];
+    [self.autoCalculateCircleView startAnimation];
+    
+    self.textField.delegate = self;
     
 }
 
@@ -62,9 +64,39 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)resetAction:(id)sender {
+    int percent = [self.textField.text intValue];
+    if (percent > 100) {
+        percent = 100;
+    }
+    [self.circleView drawPieChartWithPercent:percent
+                                    duration:2
+                                   clockwise:YES
+                                   fillColor:[UIColor clearColor]
+                                 strokeColor:[UIColor orangeColor]
+                              animatedColors:@[[UIColor greenColor],
+                                               [UIColor yellowColor],
+                                               [UIColor orangeColor],
+                                               [UIColor redColor]]];
     [self.circleView startAnimation];
-    [self.circle4 startAnimation];
+    
+    [self.autoCalculateCircleView drawCircleWithPercent:percent
+                                               duration:2
+                                              lineWidth:15
+                                              clockwise:YES
+                                                lineCap:kCALineCapRound
+                                              fillColor:[UIColor clearColor]
+                                            strokeColor:[UIColor orangeColor]
+                                         animatedColors:nil];
+    [self.autoCalculateCircleView startAnimation];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSCharacterSet *numbersOnly = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:textField.text];
+    
+    BOOL stringIsValid = [numbersOnly isSupersetOfSet:characterSetFromTextField];
+    return stringIsValid;
+}
 
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic) CGFloat percent;
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) NSString *lineCap; // kCALineCapButt, kCALineCapRound, kCALineCapSquare
 @property (nonatomic) BOOL clockwise;
 @property (nonatomic, strong) NSMutableArray *colors;
 @end
@@ -30,44 +31,33 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self commonInit];
     }
     return self;
 }
 
-- (void)drawCircleWithRadius:(CGFloat)radius
-                     percent:(CGFloat)percent
-                    duration:(CGFloat)duration
-                   lineWidth:(CGFloat)lineWidth
-                   clockwise:(BOOL)clockwise
-                   fillColor:(UIColor *)fillColor
-                 strokeColor:(UIColor *)strokeColor
-              animatedColors:(NSArray *)colors {
-    
-    self.duration = duration;
-    self.percent = percent;
-    self.radius = radius;
-    self.lineWidth = lineWidth;
-    self.clockwise = clockwise;
-    self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
-    self.colors = [NSMutableArray new];
-    if (colors != nil) {
-        for (UIColor *color in colors) {
-            [self.colors addObject:(id)color.CGColor];
-        }
-    } else {
-        [self.colors addObject:(id)strokeColor.CGColor];
-    }
-
-    [self setupBackgroundLayerWithFillColor:fillColor];
-    [self setupCircleLayerWithStrokeColor:strokeColor];
-    [self setupPercentLabel];
+- (void)awakeFromNib {
+    [self commonInit];
 }
 
+- (void)commonInit {
+    self.backgroundLayer = [CAShapeLayer layer];
+    [self.layer addSublayer:self.backgroundLayer];
+    
+    self.circle = [CAShapeLayer layer];
+    [self.layer addSublayer:self.circle];
+    
+    self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.height / 2)];
+    [self addSubview:self.percentLabel];
+    
+    self.colors = [NSMutableArray new];
+}
 
 - (void)drawCircleWithPercent:(CGFloat)percent
                      duration:(CGFloat)duration
                     lineWidth:(CGFloat)lineWidth
                     clockwise:(BOOL)clockwise
+                      lineCap:(NSString *)lineCap
                     fillColor:(UIColor *)fillColor
                   strokeColor:(UIColor *)strokeColor
                animatedColors:(NSArray *)colors {
@@ -76,8 +66,8 @@
     self.percent = percent;
     self.lineWidth = lineWidth;
     self.clockwise = clockwise;
-    self.colors = [NSMutableArray new];
     if (colors != nil) {
+        [self.colors removeAllObjects];
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
         }
@@ -88,6 +78,38 @@
     CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
     self.radius = (min - lineWidth)  / 2;
     self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
+    self.lineCap = lineCap;
+    
+    [self setupBackgroundLayerWithFillColor:fillColor];
+    [self setupCircleLayerWithStrokeColor:strokeColor];
+    [self setupPercentLabel];
+}
+
+- (void)drawPieChartWithPercent:(CGFloat)percent
+                       duration:(CGFloat)duration
+                      clockwise:(BOOL)clockwise
+                      fillColor:(UIColor *)fillColor
+                    strokeColor:(UIColor *)strokeColor
+                 animatedColors:(NSArray *)colors {
+    
+    self.duration = duration;
+    self.percent = percent;
+    self.clockwise = clockwise;
+
+    if (colors != nil) {
+        [self.colors removeAllObjects];
+        for (UIColor *color in colors) {
+            [self.colors addObject:(id)color.CGColor];
+        }
+    } else {
+        [self.colors addObject:(id)strokeColor.CGColor];
+    }
+    
+    CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
+    self.lineWidth = min  / 2;
+    self.radius = (min - self.lineWidth) / 2;
+    self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
+    self.lineCap = kCALineCapButt;
     
     [self setupBackgroundLayerWithFillColor:fillColor];
     [self setupCircleLayerWithStrokeColor:strokeColor];
@@ -95,7 +117,7 @@
 }
 
 - (void)setupBackgroundLayerWithFillColor:(UIColor *)fillColor {
-    self.backgroundLayer = [CAShapeLayer layer];
+
     self.backgroundLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.radius, self.radius) radius:self.radius startAngle:kStartAngle endAngle:2*M_PI clockwise:self.clockwise].CGPath;
     
     // Center the shape in self.view
@@ -105,17 +127,15 @@
     self.backgroundLayer.fillColor = fillColor.CGColor;
     self.backgroundLayer.strokeColor = [UIColor lightGrayColor].CGColor;
     self.backgroundLayer.lineWidth = self.lineWidth;
-    self.backgroundLayer.lineCap = kCALineCapRound;
+    self.backgroundLayer.lineCap = self.lineCap;
     self.backgroundLayer.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     self.backgroundLayer.shouldRasterize = YES;
-    
-    // Add to parent layer
-    [self.layer addSublayer:self.backgroundLayer];
+
 }
 
 - (void)setupCircleLayerWithStrokeColor:(UIColor *)strokeColor {
     // Set up the shape of the circle
-    self.circle = [CAShapeLayer layer];
+
     CGFloat endAngle = [self calculateToValueWithPercent:self.percent];
     
     // Make a circular shape
@@ -129,18 +149,17 @@
     self.circle.fillColor = [UIColor clearColor].CGColor;
     self.circle.strokeColor = strokeColor.CGColor;
     self.circle.lineWidth = self.lineWidth;
-    self.circle.lineCap = kCALineCapRound;
+    self.circle.lineCap = self.lineCap;
     self.circle.shouldRasterize = YES;
     self.circle.rasterizationScale = 2 * [UIScreen mainScreen].scale;
-    [self.layer addSublayer:self.circle];
+
 }
 
 - (void)setupPercentLabel {
-    self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.height / 2)];
+
     NSLayoutConstraint *centerHor = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.percentLabel attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
     NSLayoutConstraint *centerVer = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.percentLabel attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
-    
-    [self addSubview:self.percentLabel];
+
     self.percentLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addConstraints:@[centerHor, centerVer]];
     [self layoutIfNeeded];
@@ -156,6 +175,9 @@
 }
 
 - (void)drawCircle {
+    
+    [self.circle removeAllAnimations];
+    
     // Configure animation
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = self.duration; // "animate over 10 seconds or so.."
@@ -183,6 +205,8 @@
 }
 
 - (void)drawBackgroundCircle {
+    [self.backgroundLayer removeAllAnimations];
+    
     // Configure animation
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = self.duration; // "animate over 10 seconds or so.."

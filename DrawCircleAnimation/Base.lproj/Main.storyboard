@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3b-7P-mQf">
-                                <rect key="frame" x="104" y="30" width="112" height="30"/>
-                                <state key="normal" title="Reset Animation"/>
+                                <rect key="frame" x="235" y="30" width="69" height="30"/>
+                                <state key="normal" title="Animation"/>
                                 <connections>
                                     <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCY-aL-Od9"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxd-B2-Mry" customClass="KNCirclePercentView">
-                                <rect key="frame" x="60" y="101" width="200" height="200"/>
+                                <rect key="frame" x="60" y="121" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="1fJ-yr-ZUz"/>
@@ -33,48 +34,70 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKh-Oc-nfW">
-                                <rect key="frame" x="134" y="70" width="52" height="21"/>
+                                <rect key="frame" x="134" y="90" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Calculate Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-7D-VHe">
-                                <rect key="frame" x="76" y="311" width="168" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circle Percent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-7D-VHe">
+                                <rect key="frame" x="106" y="331" width="108" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ad-eQ-DmF" customClass="KNCirclePercentView">
-                                <rect key="frame" x="60" y="342" width="200" height="200"/>
+                                <rect key="frame" x="60" y="362" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Xds-sC-EdG"/>
                                     <constraint firstAttribute="width" constant="200" id="jBV-LG-3Nl"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkc-Jg-KLs">
+                                <rect key="frame" x="16" y="35" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fK0-Yp-h9V">
+                                <rect key="frame" x="89" y="31" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="wzK-2a-SXE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3SV-qf-YsD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l3b-7P-mQf" secondAttribute="trailing" id="5Dm-uU-qpq"/>
                             <constraint firstItem="l3b-7P-mQf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="7rA-Z0-9zA"/>
                             <constraint firstItem="4ad-eQ-DmF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CRQ-1B-zxP"/>
                             <constraint firstItem="UXH-7D-VHe" firstAttribute="top" secondItem="lxd-B2-Mry" secondAttribute="bottom" constant="10" id="Fam-uI-wt7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4ad-eQ-DmF" secondAttribute="bottom" constant="77" id="I5z-pz-Prk"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Wkc-Jg-KLs" secondAttribute="leading" id="Lvm-9A-W9U"/>
+                            <constraint firstItem="Wkc-Jg-KLs" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="top" id="MGo-dJ-4me"/>
                             <constraint firstItem="4ad-eQ-DmF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="OWH-1M-9Gu"/>
                             <constraint firstItem="4ad-eQ-DmF" firstAttribute="top" secondItem="lxd-B2-Mry" secondAttribute="bottom" constant="20" id="P1a-8z-35d"/>
                             <constraint firstItem="l3b-7P-mQf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QTX-Xd-1zu"/>
                             <constraint firstItem="4ad-eQ-DmF" firstAttribute="top" secondItem="UXH-7D-VHe" secondAttribute="bottom" constant="10" id="SVO-7c-Rhz"/>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VZB-qc-IgZ"/>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="20" id="YjG-Ll-WSg"/>
+                            <constraint firstItem="l3b-7P-mQf" firstAttribute="centerY" secondItem="Wkc-Jg-KLs" secondAttribute="centerY" id="afK-Zg-PB7"/>
+                            <constraint firstItem="fK0-Yp-h9V" firstAttribute="centerY" secondItem="Wkc-Jg-KLs" secondAttribute="centerY" id="ftC-Bd-ja1"/>
+                            <constraint firstItem="fK0-Yp-h9V" firstAttribute="leading" secondItem="Wkc-Jg-KLs" secondAttribute="trailing" constant="9" id="iTw-Z0-Lel"/>
                             <constraint firstItem="lxd-B2-Mry" firstAttribute="top" secondItem="vKh-Oc-nfW" secondAttribute="bottom" constant="10" id="kSa-7Y-X3Y"/>
                             <constraint firstItem="vKh-Oc-nfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kb5-Sc-k9x"/>
-                            <constraint firstItem="vKh-Oc-nfW" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="10" id="s9D-Pm-zUm"/>
+                            <constraint firstItem="vKh-Oc-nfW" firstAttribute="top" secondItem="l3b-7P-mQf" secondAttribute="bottom" constant="30" id="s9D-Pm-zUm"/>
                             <constraint firstItem="UXH-7D-VHe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uhf-fU-CHS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="MGo-dJ-4me"/>
                                 <exclude reference="3SV-qf-YsD"/>
                                 <exclude reference="YjG-Ll-WSg"/>
+                                <exclude reference="QTX-Xd-1zu"/>
                                 <exclude reference="OWH-1M-9Gu"/>
                                 <exclude reference="P1a-8z-35d"/>
                                 <exclude reference="I5z-pz-Prk"/>
@@ -83,10 +106,11 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="circle4" destination="4ad-eQ-DmF" id="sfW-hG-jvf"/>
+                        <outlet property="autoCalculateCircleView" destination="4ad-eQ-DmF" id="o7E-yF-6lm"/>
                         <outlet property="circleView" destination="lxd-B2-Mry" id="P0c-iw-7em"/>
                         <outlet property="radiusLabel" destination="vKh-Oc-nfW" id="iBy-sH-glo"/>
                         <outlet property="reset" destination="l3b-7P-mQf" id="JNY-BB-Xdn"/>
+                        <outlet property="textField" destination="fK0-Yp-h9V" id="RSq-gd-ze0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
