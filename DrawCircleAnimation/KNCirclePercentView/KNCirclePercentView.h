@@ -19,7 +19,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *key; 
 @property (nonatomic, strong) CAMediaTimingFunction *timingFunction;
 @property (nonatomic, strong) UILabel *percentLabel;
-@property (nonatomic) CGFloat percent;
+
 /*
  * Auto calculated radius base on View's frame
  *

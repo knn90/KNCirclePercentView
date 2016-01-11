@@ -16,7 +16,7 @@
 @property (nonatomic, strong) CAShapeLayer *circle;
 @property (nonatomic) CGPoint centerPoint;
 @property (nonatomic) CGFloat duration;
-
+@property (nonatomic) CGFloat percent;
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) NSString *lineCap; // kCALineCapButt, kCALineCapRound, kCALineCapSquare
