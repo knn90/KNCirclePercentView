@@ -43,7 +43,6 @@ typedef enum {
 - (void)drawPieChartWithPercent:(CGFloat)percent
                        duration:(CGFloat)duration
                       clockwise:(BOOL)clockwise
-                        lineCap:(NSString *)lineCap
                       fillColor:(UIColor *)fillColor
                     strokeColor:(UIColor *)strokeColor
                  animatedColors:(NSArray *)colors;

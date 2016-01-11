@@ -66,8 +66,8 @@
     self.percent = percent;
     self.lineWidth = lineWidth;
     self.clockwise = clockwise;
-
     if (colors != nil) {
+        [self.colors removeAllObjects];
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
         }
@@ -78,6 +78,7 @@
     CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
     self.radius = (min - lineWidth)  / 2;
     self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
+    self.lineCap = lineCap;
     
     [self setupBackgroundLayerWithFillColor:fillColor];
     [self setupCircleLayerWithStrokeColor:strokeColor];
@@ -87,7 +88,6 @@
 - (void)drawPieChartWithPercent:(CGFloat)percent
                        duration:(CGFloat)duration
                       clockwise:(BOOL)clockwise
-                        lineCap:(NSString *)lineCap
                       fillColor:(UIColor *)fillColor
                     strokeColor:(UIColor *)strokeColor
                  animatedColors:(NSArray *)colors {
@@ -97,6 +97,7 @@
     self.clockwise = clockwise;
 
     if (colors != nil) {
+        [self.colors removeAllObjects];
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
         }
@@ -106,9 +107,9 @@
     
     CGFloat min = MIN(self.frame.size.width, self.frame.size.height);
     self.lineWidth = min  / 2;
-
     self.radius = (min - self.lineWidth) / 2;
     self.centerPoint = CGPointMake(self.frame.size.width / 2 - self.radius, self.frame.size.height / 2 - self.radius);
+    self.lineCap = kCALineCapButt;
     
     [self setupBackgroundLayerWithFillColor:fillColor];
     [self setupCircleLayerWithStrokeColor:strokeColor];
@@ -126,7 +127,7 @@
     self.backgroundLayer.fillColor = fillColor.CGColor;
     self.backgroundLayer.strokeColor = [UIColor lightGrayColor].CGColor;
     self.backgroundLayer.lineWidth = self.lineWidth;
-    self.backgroundLayer.lineCap = kCALineCapButt;
+    self.backgroundLayer.lineCap = self.lineCap;
     self.backgroundLayer.rasterizationScale = 2 * [UIScreen mainScreen].scale;
     self.backgroundLayer.shouldRasterize = YES;
 
@@ -148,7 +149,7 @@
     self.circle.fillColor = [UIColor clearColor].CGColor;
     self.circle.strokeColor = strokeColor.CGColor;
     self.circle.lineWidth = self.lineWidth;
-    self.circle.lineCap = kCALineCapButt;
+    self.circle.lineCap = self.lineCap;
     self.circle.shouldRasterize = YES;
     self.circle.rasterizationScale = 2 * [UIScreen mainScreen].scale;
 
@@ -174,6 +175,9 @@
 }
 
 - (void)drawCircle {
+    
+    [self.circle removeAllAnimations];
+    
     // Configure animation
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = self.duration; // "animate over 10 seconds or so.."
@@ -201,6 +205,8 @@
 }
 
 - (void)drawBackgroundCircle {
+    [self.backgroundLayer removeAllAnimations];
+    
     // Configure animation
     CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawAnimation.duration            = self.duration; // "animate over 10 seconds or so.."
