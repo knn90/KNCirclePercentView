@@ -66,8 +66,8 @@
     self.percent = percent;
     self.lineWidth = lineWidth;
     self.clockwise = clockwise;
+    [self.colors removeAllObjects];
     if (colors != nil) {
-        [self.colors removeAllObjects];
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
         }
@@ -95,9 +95,9 @@
     self.duration = duration;
     self.percent = percent;
     self.clockwise = clockwise;
-
+    [self.colors removeAllObjects];
     if (colors != nil) {
-        [self.colors removeAllObjects];
+
         for (UIColor *color in colors) {
             [self.colors addObject:(id)color.CGColor];
         }

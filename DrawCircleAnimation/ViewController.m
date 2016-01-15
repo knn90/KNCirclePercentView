@@ -30,7 +30,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.radiusLabel.text = @"Pie Chart";
-    [self.circleView drawPieChartWithPercent:75
+    [self.circleView drawPieChartWithPercent:100
                                    duration:2
                                   clockwise:YES
                                   fillColor:[UIColor clearColor]
@@ -42,7 +42,7 @@
     self.circleView.percentLabel.font = [UIFont systemFontOfSize:35];
     
     // Auto calculate radius
-    [self.autoCalculateCircleView drawCircleWithPercent:60
+    [self.autoCalculateCircleView drawCircleWithPercent:100
                                duration:2
                               lineWidth:15
                               clockwise:YES
@@ -64,6 +64,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)resetAction:(id)sender {
+    [self.textField resignFirstResponder];
     int percent = [self.textField.text intValue];
     if (percent > 100) {
         percent = 100;
