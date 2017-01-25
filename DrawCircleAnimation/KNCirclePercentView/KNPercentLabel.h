@@ -22,7 +22,7 @@
 
 @interface KNPercentLayer : CALayer
 
-@property (strong, nonatomic) id<KNPercentDelegate> tweenDelegate;
+@property (weak, nonatomic) id<KNPercentDelegate> tweenDelegate;
 @property (nonatomic) CGFloat fromValue;
 @property (nonatomic) CGFloat toValue;
 @property (nonatomic) NSTimeInterval tweenDuration;
